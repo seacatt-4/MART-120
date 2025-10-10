@@ -1,0 +1,30 @@
+span{
+    color:white;
+    background-color:darkseagreen;
+}
+.pinkColor {
+    color: pink;
+    font-family: verdana;
+    font-size: 20px;
+}
+span.pinkColor {
+     color: pink;
+    font-family: verdana;
+    font-size: 20px;
+}
+#link1Color{
+    color:blueviolet;
+    font-family:cambria;
+    font-size:16px;
+}
+#text2Color{
+    color:blue;
+    font-family:cambria;
+    font-size:16px;
+}
+#final3Color{
+    color:red;
+    font-family:cambria;
+    font-size:16px;
+}
+body {background-image: url("pink.jpeg")}
