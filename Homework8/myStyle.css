@@ -1,0 +1,25 @@
+
+
+span{
+    color:darkolivegreen;
+    font-family: Tahoma;
+}
+body {background-image: url("pink.jpg")}
+
+
+.btnSubmit, #btnSubmit{
+    border: 2px darkcyan;
+    font-size: medium;
+    font-family: Tahoma, sans-serif;
+    color: teal;
+    background-color: lightskyblue;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.btnSubmit:hover, #btnSubmit:hover {
+    background-color: deepskyblue;
+}
