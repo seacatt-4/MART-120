@@ -1,0 +1,29 @@
+<html>
+<head>
+    <script>
+        function check() {
+            var toamessage = document.getElementById("toamessage");
+            var checkboxYes = document.getElementById("checkboxYes");
+            var checkboxNo = document.getElementById("checkboxNo");
+        
+            if (checkboxYes.checked) {
+                toamessage.innerHTML = "Thank You";
+            } else if (checkboxNo.checked) {
+                    toamessage.innerHTML = "oh.";
+                } else {
+                toamessage.innerHTML = "Please Check a Box";
+            }
+        }
+
+        window.onload = function () {
+            document.getElementById("btnSubmit").addEventListener("click", check);
+        };
+    </script>
+</head>
+<body>
+    <input id="checkboxYes" type="checkbox" name="toa" value="yes"> Yes
+    <input id="checkboxNo" type="checkbox" name="toa" value="no"> No
+    <div id="toamessage"></div>
+    <button id="btnSubmit">Submit</button>
+</body>
+</html>
