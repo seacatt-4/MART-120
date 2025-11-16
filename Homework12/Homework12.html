@@ -1,0 +1,164 @@
+<html>
+    <head>
+        <title>
+            Homework 11
+        </title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+  <script>
+
+var playerX = 180;
+var playerY = 50;
+
+var obX = -30;
+var obY = 400;
+
+var blockX = 3;  
+var blockY = 3;
+
+var w = 87; 
+var s = 83;
+var a = 65;
+var d = 68;
+
+var textX;
+var textY;
+
+var start = false;
+
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(50, 800, 200);
+  theGame();{
+    
+  }
+}
+
+// introduction
+
+function theGame(){
+  if (!start) {
+    drawIntro();
+  } else {
+    drawGame();
+    obstacles();
+    moveObstacles();
+    borderWall();
+    theExit();
+    youWin();
+}
+}
+
+function drawIntro() {
+  noStroke();
+  textStyle(BOLD);
+
+  fill(50, 200, 50);
+  rect(50, 124, 300, 60);
+
+  textSize(25);
+  fill(80, 80, 80);
+  text("Click anywhere to start!", 60, 160);
+
+  textSize(30);
+  text("get to the exit", textX, textY);
+}
+
+function mouseClicked() {
+  textX = mouseX;
+  textY = mouseY;
+  start = true;
+}
+
+// set game
+
+function drawGame() {
+  textSize(30);
+  fill(80, 80, 80);
+  text("get to the exit", textX, textY);
+
+  movePlayer();
+  fill("pink");
+  circle(playerX, playerY, 20);
+}
+
+//obstacle display
+function obstacles() {
+  noStroke();
+  fill(30, 90, 100);
+  rect(obX, 25, 40, 30);
+
+  fill(80, 30, 50);
+  rect(340, obY, 30, 40);
+}
+
+// player movement
+
+function movePlayer() {
+  if (keyIsDown(w)) playerY -= 2;
+  if (keyIsDown(s)) playerY += 2;
+  if (keyIsDown(a)) playerX -= 2;
+  if (keyIsDown(d)) playerX += 2;
+}
+
+// obstacle movement
+
+function moveObstacles() {
+
+  // horizontal block
+  obX += blockX;
+  if (obX > 430) {
+    obX = -40;
+    blockX = floor(random(2, 10));
+  }
+
+  // vertical block
+  obY -= blockY;
+  if (obY < -40) {
+    obY = 430;
+    blockY = floor(random(2, 10));
+  }
+}
+  function borderWall() {
+    noStroke();
+    fill(20, 40, 80);
+    rect(0, 0, 10, 400);
+    rect(0, 0, 400, 10);
+    rect(10, 390, 400, 10);
+    rect(390, 10, 10, 400);
+  }
+    
+    //exit
+    function theExit(){
+      fill(80, 80, 80);
+      textSize(15);
+      text('the exit', 173, 385);
+      
+      fill('pink');
+      rect(170, 390, 60, 10);
+  
+}
+
+//youWin
+  function youWin(){
+    if (playerX >= 170 && playerX <= 230) {
+      exitX = true
+    } else {
+      exitX = false
+    }
+    if (playerY >= 400) {
+      exitY = true
+    } else {
+      exitY = false
+    }
+    if (exitX == true && exitY == true) {
+      textSize(70);
+      fill('pink');
+      text('YOU WIN!', 40, 200)
+    }    
+  }
+</script>
+</head>
+</html>
