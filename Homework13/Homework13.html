@@ -1,19 +1,18 @@
 <html>
     <head>
         <title>
-            Homework 12
+            Homework 13
         </title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
   <script>
-
 var playerX = 180;
 var playerY = 50;
 
-var obX = -30;
-var obY = 400;
-
-var blockX = 3;  
-var blockY = 3;
+var obX = [];
+var speedX = [];
+var obY = [];
+var speedY = [];
+var obD = [];
 
 var w = 87; 
 var s = 83;
@@ -22,35 +21,31 @@ var d = 68;
 
 var textX;
 var textY;
-
 var start = false;
 
 function setup() {
   createCanvas(400, 400);
+  setObstacles();
 }
 
 function draw() {
   background(50, 800, 200);
-  theGame();{
-    
-  }
+  theGame();
 }
 
-// introduction
-
+//the whole game
 function theGame(){
   if (!start) {
     drawIntro();
   } else {
     drawGame();
-    obstacles();
-    moveObstacles();
     borderWall();
     theExit();
     youWin();
 }
 }
 
+//intro scene
 function drawIntro() {
   noStroke();
   textStyle(BOLD);
@@ -66,14 +61,14 @@ function drawIntro() {
   text("get to the exit", textX, textY);
 }
 
+//started game and create text
 function mouseClicked() {
   textX = mouseX;
   textY = mouseY;
   start = true;
 }
 
-// set game
-
+//game scene
 function drawGame() {
   textSize(30);
   fill(80, 80, 80);
@@ -81,21 +76,46 @@ function drawGame() {
 
   movePlayer();
   fill("pink");
+
+ //draw obstacles
+    for (var i = 0; i < obX.length; i++) {
+    obX[i] += speedX[i];
+    obY[i] += speedY[i];
+
+    if (obX[i] < 0) obX[i] = width;
+    if (obX[i] > width) obX[i] = 0;
+    if (obY[i] < 0) obY[i] = height;
+    if (obY[i] > height) obY[i] = 0;
+
+    circle(obX[i], obY[i], obD[i]);
+  }
+    
+  // draw player
+  fill("pink");
   circle(playerX, playerY, 20);
 }
 
-//obstacle display
-function obstacles() {
-  noStroke();
-  fill(30, 90, 100);
-  rect(obX, 25, 40, 30);
+//obstacle randomize
+function setObstacles() {
+  obX = [];
+  speedX = [];
+  obY = [];
+  speedY = [];
+  obD = [];
+  
+  let count = 5;
 
-  fill(80, 30, 50);
-  rect(340, obY, 30, 40);
+  for (let i = 0; i < count; i++) {
+    obX.push(random(20, 380));     
+    obY.push(random(20, 380));
+    obD.push(random(10, 30));
+    
+    speedX.push(random(-3, 3));
+    speedY.push(random(-3, 3));
+  }
 }
 
-// player movement
-
+//player movement
 function movePlayer() {
   if (keyIsDown(w)) playerY -= 2;
   if (keyIsDown(s)) playerY += 2;
@@ -103,24 +123,7 @@ function movePlayer() {
   if (keyIsDown(d)) playerX += 2;
 }
 
-// obstacle movement
-
-function moveObstacles() {
-
-  // horizontal block
-  obX += blockX;
-  if (obX > 430) {
-    obX = -40;
-    blockX = floor(random(2, 10));
-  }
-
-  // vertical block
-  obY -= blockY;
-  if (obY < -40) {
-    obY = 430;
-    blockY = floor(random(2, 10));
-  }
-}
+//border
   function borderWall() {
     noStroke();
     fill(20, 40, 80);
@@ -158,6 +161,7 @@ function moveObstacles() {
       fill('pink');
       text('YOU WIN!', 40, 200)
     }    
+    
   }
 </script>
 </head>
