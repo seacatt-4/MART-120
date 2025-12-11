@@ -1,0 +1,102 @@
+<html>
+    <title>Contact Page</title>
+    <head> 
+        <link rel="stylesheet" type="text/css" href="myStyle.css">  
+        <script>
+
+            function getData() {
+                var name = document.getElementById("txtName").value;
+                var phone = document.getElementById("txtPhone").value;
+            }  
+            function check(event) {
+                event.preventDefault();
+                var nameInput = document.getElementById("txtName");
+                var phoneInput = document.getElementById("txtPhone");
+            var name = nameInput.value.trim();
+            var phone = phoneInput.value.trim();
+            var toamessage = document.getElementById("toamessage");
+            var radioYes = document.getElementById("radioYes");
+            var radioNo = document.getElementById("radioNo");
+        
+            nameInput.style.border = "";
+            phoneInput.style.border = "";
+
+            let hasError = false;
+
+            if (!name) {
+                nameInput.style.border = "2px solid red";
+                hasError = true;
+            }
+            if (!phone) {
+                phoneInput.style.border = "2px solid red";
+                hasError = true;
+            }
+
+            if (hasError) {
+                toamessage.innerHTML = "Please sacrifice your identity.";
+                return;
+            }
+
+            if (radioYes.checked) {
+                toamessage.innerHTML = "Yessssss, " + name + ", YES!";
+            } else if (radioNo.checked) {
+                    toamessage.innerHTML = "oh. ok, " + name + ".";
+                } else {
+                toamessage.innerHTML = "Well, you have to choose one.";
+            }
+        }
+
+        window.onload = function () {
+            document.getElementById("btnSubmit").addEventListener("click", check);
+        };
+            
+        </script>
+   </head>
+<body> 
+    <h1><span>Subscribe To Strange Dreams!</span></h1>
+    <br />
+
+    <form>
+    <table>
+        <tr>
+            <td><span>What combination of letters are you regarded as?: </span></td>
+            <td><input type="text" id="txtName" required></td>
+        </tr>
+        <tr>
+            <td><span>What sequence of numbers alerts you?: </span></td>
+            <td><input type="text" id="txtPhone" required></td>
+        </tr>
+        <tr>
+        <tr></tr>
+            <td colspan="2">
+                <span>Accept Rules of Care?:</span> 
+            </br>
+            <input type="radio" id="radioYes" name="toabtn" value="yes" required>
+            <span>Duh!</span>
+            <input type="radio" id="radioNo" name="toabtn" value="no">
+            <span>Ummmm</span>
+        </td>
+        </tr>
+        <tr>
+            <tr></tr>
+         <td colspan="2">
+            <button id="btnSubmit">
+                <span class="btnSubmit">Release Info</span></button>
+            </td>
+            </tr>
+            <tr>
+                <td colspan="2">   
+                    <span id="toamessage"></span>
+                </td>
+            </tr>
+            <div id="finalResult"></div>
+            </table>
+            </form>
+    
+        <h2>Other Links</h2>
+	<p>
+	<a href="H62ndPage.html" style="text-decoration:solid" target="_blank">Once Upon A Dream</a>
+	<br />
+	<a href="H6homepage.html" style="text-decoration:solid" target="_blank">Cassie's Homepage</a>
+	</p>
+    <br />
